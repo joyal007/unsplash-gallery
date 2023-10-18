@@ -20,7 +20,7 @@ function ImageModel({ item }: { item: unknown }) {
         className={"rounded-sm overflow-hidden mb-3 md:mb-7 cursor-pointer "}
         onClick={() => setOpen(true)}
       >
-        <img src={item?.urls?.raw ?? ""} alt="unsplash image" />
+        <img src={item?.urls?.regular ?? ""} alt="unsplash image" />
         <div className="flex justify-between items-center bg-card-bg border border-card-border rounded-b-sm">
           <div className=" flex items-center p-2 md:gap-2 gap-1">
             <img

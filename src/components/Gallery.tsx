@@ -2,6 +2,7 @@ import React from "react";
 import ImageModel from "./ImageModel";
 
 function Gallery({ data, query }) {
+  console.log("data", data);
   return (
     <>
       <h3 className="px-[27px] md:px-[100px] text-4xl mt-4 font-Montserrat font-bold">

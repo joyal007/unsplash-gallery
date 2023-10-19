@@ -4,7 +4,8 @@ import { Input } from "./ui/input";
 import { SearchIcon } from "lucide-react";
 
 
-function Header({ fetchRequest }) {
+function Header({ fetchRequest }: {fetchRequest: (queryString?: string) => Promise<void>}) {
+
   const [query, setQuery] = useState("");
   return (
     <header className="relative overflow-hidden">

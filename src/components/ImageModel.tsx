@@ -11,8 +11,9 @@ import { Button } from "./ui/button";
 import { Access_Key, Unsplash_url } from "@/lib/utils";
 import { saveAs } from "file-saver";
 import { Skeleton } from "./ui/skeleton";
+import { dataT } from "../types/dataFetch";
 
-function ImageModel({ item }: { item: unknown }) {
+function ImageModel({ item }: { item: dataT }) {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -59,7 +60,7 @@ function PopUp({
   id: string;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const [item, setItem] = useState({});
+  const [item, setItem] = useState<dataT>({} as dataT);
   const [loading, setLoading] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
   const fetchData = async () => {
@@ -78,7 +79,7 @@ function PopUp({
   }, []);
 
   function handleDownload() {
-    saveAs(item?.urls?.raw, "image.jpg");
+    saveAs(item?.urls?.regular, "image.jpg");
   }
 
   return (
@@ -95,11 +96,11 @@ function PopUp({
           </Button>
           <div className="md:w-full md:h-full relative">
             <img
-              src={item?.urls?.raw}
+              src={item?.urls?.regular}
               onLoad={() => {
                 setImageLoaded(true);
               }}
-              className={`object-cover w-full max-h-[400px] md:max-h-[500px] ${
+              className={`object-cover object-center w-full max-h-[400px] md:max-h-[500px] ${
                 imageLoaded ? "block" : "hidden"
               }`}
             />
@@ -205,7 +206,7 @@ function PopUp({
 
 export default ImageModel;
 
-function Loader({ loading }) {
+function Loader({ loading }: {loading: boolean}) {
   return (
     <div
       className={` ${
